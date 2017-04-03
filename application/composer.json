@@ -1,0 +1,7 @@
+{
+  "description" : "Worldcup",
+  "name" : "Schop/Worldcup",
+  "require": {
+    "php": ">=5.3"
+  }
+}
