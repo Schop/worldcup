@@ -18,12 +18,23 @@
             <?php } else { ?>
             <div class="form-group">
             <?php  } ?>
-              <label for="group_name" class='col-sm-4 control-label'><?php echo lang('team_name'); ?></label>
+              <label for="team_name" class='col-sm-4 control-label'><?php echo lang('team_name'); ?></label>
               <div class='col-sm-8'>
                 <input type="text" name="team_name" value="<?php echo set_value('team_name'); ?>" class="form-control" placeholder="<?php echo lang('team_name'); ?>">
                 <span id="helpBlock" class="help-block"><?php echo form_error('team_name');?></span>
               </div>
             </div>
+            <?php if(form_error('team_shortname')) { ?>
+            <div class="form-group has-error">
+            <?php } else { ?>
+            <div class="form-group">
+            <?php  } ?>
+              <label for="team_shortname" class='col-sm-4 control-label'><?php echo lang('team_shortname'); ?></label>
+              <div class='col-sm-8'>
+                <input type="text" name="team_shortname" value="<?php echo set_value('team_shortname'); ?>" class="form-control" placeholder="<?php echo lang('team_shortname'); ?>">
+                <span id="helpBlock" class="help-block"><?php echo form_error('team_shortname');?></span>
+              </div>
+            </div>            
             <?php if(form_error('team_identifier')) { ?>
             <div class="form-group has-error">
             <?php } else { ?>
@@ -62,7 +73,7 @@
             </div>
             <div class="panel-body">
               <?php if (isset($teams)) { ?>
-              <table class="table dataTable">
+              <table class="table dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <td><?php echo lang('ID'); ?></td>

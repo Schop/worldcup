@@ -16,3 +16,4 @@ $lang['groups'] = 'Groepen';
 $lang['profile'] = 'Profiel';
 $lang['logout'] = 'Uitloggen';
 $lang['teams'] = 'Teams';
+$lang['venues'] = 'Stadions';

@@ -134,7 +134,7 @@
             </div>
             <div class="panel-body">
               <?php if (isset($users)) { ?>
-              <table class="table dataTable">
+              <table class="table dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr><td><?php echo lang('username');?></td><td><?php echo lang('first_name');?></td><td><?php echo lang('last_name');?></td></tr>
                 </thead>

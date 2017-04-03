@@ -52,7 +52,7 @@
             </div>
             <div class="panel-body">
               <?php if (isset($groups)) { ?>
-              <table class="table dataTable">
+              <table class="table dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr><td><?php echo lang('ID');?></td><td><?php echo lang('group_name');?></td><td><?php echo lang('group_description');?></td></tr>
                 </thead>

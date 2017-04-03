@@ -85,7 +85,8 @@
 <script>
 $(document).ready(function() {
         $('.dataTable').dataTable({
-          responsive: true
+          responsive: true,
+          stateSave: true
         });
         $('[data-toggle="tooltip"]').tooltip();
 } );

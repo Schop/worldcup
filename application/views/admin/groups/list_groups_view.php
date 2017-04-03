@@ -19,7 +19,7 @@
             if(!empty($groups))
             {
             ?>
-              <table class="table table-striped table-hover dataTable">
+              <table class="table table-striped table-hover dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <td><?php echo lang('ID');?></td>

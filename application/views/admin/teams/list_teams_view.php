@@ -19,14 +19,14 @@
             if(!empty($teams))
             {
             ?>
-              <table class="table table-striped table-hover dataTable">
+              <table class="table table-striped table-hover dataTable"  cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <td><?php echo lang('ID');?></td>
                     <td><?php echo lang ('team_identifier');?></td>
                     <td><?php echo lang ('team_name');?></td>
+                    <td><?php echo lang('team_shortname');?></td>
                     <td><?php echo lang ('team_flag');?></td>
-                    <td></td>
                     <td><?php echo lang ('operations');?></td>
                   </tr>
                 </thead>
@@ -39,9 +39,9 @@
                     <td><?php echo $team->id; ?></td>
                     <td><?php echo $team->identifier; ?></td>
                     <td><?php echo $team->name; ?></td>
-                    <td><?php echo $team->flag; ?></td>
-                    <td><img src="<?php echo site_url('assets/flags/24/'.$team->flag.'.png');?>" /></td>
-                    <td><?php echo anchor('admin/teams/edit/'.$team->id,'<span class="glyphicon glyphicon-pencil"></span>','data-toggle="tooltip" data-placement="auto top" title="'.lang('edit_team').'"');
+                    <td><?php echo $team->shortname; ?></td>
+                    <td><img src="<?php echo site_url('assets/flags/24/'.$team->flag.'.png');?>" /> <?php echo $team->flag; ?></td>
+                    <td><?php echo anchor('admin/teams/edit/'.$team->id,'<span class="glyphicon glyphicon-pencil"></span>','data-toggle="tooltip" data-placement="auto top" title="'.sprintf(lang('edit_team'),$team->name).'"');
                         echo ' '.anchor('admin/teams/delete/'.$team->id,'<span class="glyphicon glyphicon-remove"></span>', 'data-toggle="tooltip" data-placement="auto top" title="'.lang('delete_team').'"');?>
                     </td>
                   </tr>

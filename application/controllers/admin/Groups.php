@@ -94,7 +94,8 @@ class Groups extends Admin_Controller
       if ($update_group == TRUE) {
         $this->session->set_flashdata('successmessage',$this->ion_auth->messages());
       } else {
-        $this->session->set_flashdata('errormessage',$this->ion_auth->messages());
+        $this->session->set_flashdata('errormessage','Not saved!');
+
       }
       redirect('admin/groups','refresh');
     }

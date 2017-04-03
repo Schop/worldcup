@@ -15,8 +15,13 @@
 $lang['teams_no_access'] = 'Geen toegang.';
 $lang['all_users'] = 'All users';
 $lang['create_team'] = 'Nieuw Team Aanmaken';
+$lang['edit_team'] = 'Team %s bewerken';
+$lang['error_saving_team'] = 'Er is een fout opgetreden, gegevens zijn niet opgeslagen';
+$lang['team_saved'] = 'Team %s opgeslagen';
+$lang['team_created'] = 'Team %s opgeslagen';
 $lang['team_identifier'] = 'Team Code';
 $lang['team_name'] = 'Naam';
+$lang['team_shortname'] = 'Afkorting';
 $lang['ID'] = 'ID';
 $lang['team_flag'] = 'Vlag';
 $lang['operations'] = 'Acties';

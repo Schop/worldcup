@@ -51,7 +51,7 @@
             </div>
             <div class="panel-body">
               <?php if (isset($groups)) { ?>
-              <table class="table dataTable">
+              <table class="table dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <td><?php echo lang('ID'); ?></td>
