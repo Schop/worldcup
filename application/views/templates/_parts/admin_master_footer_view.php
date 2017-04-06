@@ -11,11 +11,15 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo site_url('assets/admin/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo site_url('assets/admin/js/pwstrength-bootstrap.min.js');?>"></script>
     <script src="<?php echo site_url('assets/admin/js/bootstrap-notify.min.js'); ?>"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url('assets/admin/js/bootstrap-datepicker.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('assets/admin/js/jquery.timepicker.min.js'); ?>"></script>
+    
     <script src="<?php echo site_url('assets/admin/js/custom.js'); ?>"></script>
 
 <!-- Notification Messages -->
@@ -89,6 +93,12 @@ $(document).ready(function() {
           stateSave: true
         });
         $('[data-toggle="tooltip"]').tooltip();
+        $('.datepicker').datepicker({
+          format: "yyyy-mm-dd",
+        });
+        $('.timepicker').timepicker({
+          'timeFormat': 'H:i'
+        });
 } );
 </script>
   </body>

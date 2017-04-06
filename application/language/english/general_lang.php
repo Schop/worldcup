@@ -18,4 +18,5 @@ $lang['profile'] = 'Profile';
 $lang['logout'] = 'Logout';
 $lang['teams'] = 'Teams';
 $lang['venues'] = 'Venues';
+$lang['matches'] = 'Matches';
 

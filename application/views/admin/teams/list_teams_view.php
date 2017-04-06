@@ -40,7 +40,7 @@
                     <td><?php echo $team->identifier; ?></td>
                     <td><?php echo $team->name; ?></td>
                     <td><?php echo $team->shortname; ?></td>
-                    <td><img src="<?php echo site_url('assets/flags/24/'.$team->flag.'.png');?>" /> <?php echo $team->flag; ?></td>
+                    <td><img src="<?php echo site_url('assets/flags/24/'.$team->flag.'.png');?>" /></td>
                     <td><?php echo anchor('admin/teams/edit/'.$team->id,'<span class="glyphicon glyphicon-pencil"></span>','data-toggle="tooltip" data-placement="auto top" title="'.sprintf(lang('edit_team'),$team->name).'"');
                         echo ' '.anchor('admin/teams/delete/'.$team->id,'<span class="glyphicon glyphicon-remove"></span>', 'data-toggle="tooltip" data-placement="auto top" title="'.lang('delete_team').'"');?>
                     </td>

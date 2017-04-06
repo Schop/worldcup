@@ -1,12 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Team_model extends MY_Model
+class Hometeam_model extends MY_Model
 {
 	public $protected_attributes = array( 'id' );
 
     public $before_create = array( 'created_at', 'updated_at' );
     public $before_update = array( 'updated_at' );
-    protected $soft_delete = TRUE;
     
     // Copy the teams table after it has changed, for away teams
     public $after_update = array('copy_table');
@@ -49,7 +48,7 @@ class Team_model extends MY_Model
 	function copy_table($row) {
 		$this->db->query("DROP TABLE IF EXISTS awayteams");
 		$this->db->query("CREATE TABLE awayteams LIKE hometeams"); 
-		$this->db->query("INSERT awayteams SELECT * FROM awayteams");
+		$this->db->query("INSERT awayteams SELECT * FROM hometeams");
 	}
 
 }

@@ -1,5 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-
   <div class="page-content">
     <div class="row">
       <div class="col-md-2">
@@ -20,21 +19,12 @@
             <?php  } ?>
               <label for="team_name" class='col-sm-4 control-label'><?php echo lang('team_name'); ?></label>
               <div class='col-sm-8'>
-                <input type="text" name="team_name" value="<?php echo set_value('team_name'); ?>" class="form-control" placeholder="<?php echo lang('team_name'); ?>">
+                <?php echo form_dropdown('team_name', $countries, set_value('team_name'),"class='form-control'"); ?>
+                <!--<input type="text" name="team_name" value="<?php echo set_value('team_name'); ?>" class="form-control" placeholder="<?php echo lang('team_name'); ?>"> -->
                 <span id="helpBlock" class="help-block"><?php echo form_error('team_name');?></span>
               </div>
             </div>
-            <?php if(form_error('team_shortname')) { ?>
-            <div class="form-group has-error">
-            <?php } else { ?>
-            <div class="form-group">
-            <?php  } ?>
-              <label for="team_shortname" class='col-sm-4 control-label'><?php echo lang('team_shortname'); ?></label>
-              <div class='col-sm-8'>
-                <input type="text" name="team_shortname" value="<?php echo set_value('team_shortname'); ?>" class="form-control" placeholder="<?php echo lang('team_shortname'); ?>">
-                <span id="helpBlock" class="help-block"><?php echo form_error('team_shortname');?></span>
-              </div>
-            </div>            
+            
             <?php if(form_error('team_identifier')) { ?>
             <div class="form-group has-error">
             <?php } else { ?>
@@ -46,17 +36,7 @@
                 <span id="helpBlock" class="help-block"><?php echo form_error('team_identifier');?></span>
               </div>
             </div>
-            <?php if(form_error('team_flag')) { ?>
-            <div class="form-group has-error">
-            <?php } else { ?>
-            <div class="form-group">
-            <?php  } ?>
-              <label for="team_flag" class='col-sm-4 control-label'><?php echo lang('team_flag'); ?></label>
-              <div class="col-sm-8">
-                <input type="text" name="team_flag" value="<?php echo set_value('team_flag'); ?>" class="form-control" placeholder="<?php echo lang('team_flag'); ?>">
-                <span id="helpBlock" class="help-block"><?php echo form_error('team_flag');?></span>
-              </div>
-            </div>            
+           
             <div class="col-sm-offset-4 col-sm-8">
               <button type="submit" name="submit" value="<?php echo lang('save'); ?>" class="btn btn-success btn-outline"><span class="glyphicon glyphicon-save"></span> <?php echo lang('save'); ?></button>
               <a href="<?php echo site_url('admin/teams'); ?>" class="btn btn-danger btn-outline pull-right"><span class="glyphicon glyphicon-remove"></span> <?php echo lang('cancel'); ?></a>

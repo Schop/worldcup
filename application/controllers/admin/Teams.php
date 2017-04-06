@@ -21,7 +21,7 @@ class Teams extends Admin_Controller
       redirect('admin','refresh');
     }
 
-    $this->load->model('team_model', 'team');
+    $this->load->model('hometeam_model', 'team');
   }
 
   public function index()
@@ -34,16 +34,19 @@ class Teams extends Admin_Controller
   public function create()
   {
     $this->data['page_title'] = lang('create_team');
+    $this->load->model('country_model', 'country');
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
     $this->lang->load(array('form_validation'), $this->session->userdata('site_lang'));
-    $this->form_validation->set_rules('team_name',lang('team_name'),'trim|required|min_length[3]|is_unique[teams.name]');
-    $this->form_validation->set_rules('team_identifier',lang('team_identifier'),'trim|required|alpha_numeric|is_unique[teams.identifier]|exact_length[2]');
-    $this->form_validation->set_rules('team_flag',lang('team_flag'),'trim|required|alpha_numeric|is_unique[teams.flag]|exact_length[2]');
+    $this->form_validation->set_rules('team_name',lang('team_name'),'trim|required|min_length[3]|is_unique[hometeams.name]');
+    $this->form_validation->set_rules('team_identifier',lang('team_identifier'),'trim|required|alpha_numeric|is_unique[hometeams.identifier]|exact_length[2]');
+    //$this->form_validation->set_rules('team_flag',lang('team_flag'),'trim|required|alpha_numeric|is_unique[teams.flag]|exact_length[2]');
    
     if($this->form_validation->run()===FALSE)
     {
       $this->load->helper('form');
+      
+      $this->data['countries'] = $this->country->dropdown('country_name', 'country_name');
       $this->data['teams'] = $this->team->get_all();
       $this->render('admin/teams/create_team_view');
     }
@@ -51,8 +54,9 @@ class Teams extends Admin_Controller
     {
       $team_name = $this->input->post('team_name');
       $team_identifier = $this->input->post('team_identifier');
-      $team_flag = $this->input->post('team_flag');
-      //print_r($this->input->post);
+      $country = $this->country->get_by('country_name', $team_name);
+      $team_flag = $country->country_code;
+      $team_shortname = $country->country_code;
       $create = $this->team->insert(array(
       	'name' => $team_name,
         'shortname' => $team_shortname,
@@ -73,14 +77,12 @@ class Teams extends Admin_Controller
   public function edit($team_id = NULL)
   {
     $team_id = $this->input->post('team_id') ? $this->input->post('team_id') : $team_id;
+    $this->load->model('country_model', 'country');
     $this->load->library('form_validation');
     $this->lang->load(array('form_validation'), $this->session->userdata('site_lang'));
     $this->form_validation->set_rules('team_name',lang('group_name'),'trim|required|min_length[3]|callback_check_team_name');
     $this->form_validation->set_rules('team_identifier',lang('team_identifier'),'trim|required|exact_length[2]|callback_check_team_identifier');
-    $this->form_validation->set_rules('team_shortname',lang('team_shortname'),'trim|required|max_length[5]|callback_check_team_shortname');
-    $this->form_validation->set_rules('team_flag',lang('team_flag'),'trim|required|exact_length[2]|callback_check_team_flag');
     $this->form_validation->set_rules('team_id',lang('ID'),'trim|integer|required');
-
     if($this->form_validation->run() === FALSE)
     {
       if($team = $this->team->get($team_id))
@@ -93,6 +95,7 @@ class Teams extends Admin_Controller
         redirect('admin/teams', 'refresh');
       }
       $this->data['teams'] = $this->team->get_all();
+      $this->data['countries'] = $this->country->dropdown('country_name', 'country_name');
       $this->data['page_title'] = sprintf(lang('edit_team'),$team->name);
       $this->load->helper('form');
       $this->render('admin/teams/edit_team_view');
@@ -100,16 +103,18 @@ class Teams extends Admin_Controller
     else
     {
       $team_name = $this->input->post('team_name');
-      $team_shortname = $this->input->post('team_shortname');
       $team_identifier = $this->input->post('team_identifier');
-      $team_flag = $this->input->post('team_flag');
-      $group_id = $this->input->post('group_id');
+
+      $country = $this->country->get_by('country_name', $team_name);
+      $team_flag = $country->country_code;
+      $team_shortname = $country->country_code;
       $update = $this->team->update($team_id, array('name' => $team_name, 'shortname' => $team_shortname, 'identifier' => $team_identifier, 'flag' => $team_flag));
       if ($update == TRUE) {
         $this->session->set_flashdata('successmessage', sprintf(lang('team_saved'), $team_name));
       } else {
         $this->session->set_flashdata('errormessage', lang('error_saving_team'));
       }
+
       redirect('admin/teams','refresh');
     }
   }

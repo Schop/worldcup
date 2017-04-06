@@ -1,5 +1,5 @@
 body {
-  font-family: 'Ubuntu','Open Sans', sans-serif;
+  font-family: 'Roboto','Open Sans', sans-serif;
   background-color: #f7f7f7;
   position: relative;
   margin: 0px;
@@ -64,7 +64,7 @@ footer .copy{
 
 .header .logo h1 a{
    color:#fff;
-   font-family: 'Ubuntu','Open Sans Condensed', sans-serif;
+   font-family: 'Roboto','Open Sans Condensed', sans-serif;
 }
 
 .header .logo h1 a:hover{

@@ -21,21 +21,13 @@
             <?php  } ?>
               <label for="team_name" class='col-sm-4 control-label'><?php echo lang('team_name'); ?></label>
               <div class='col-sm-8'>
-                <input type="text" name="team_name" value="<?php echo set_value('team_name', $team->name); ?>" class="form-control">
+                <?php echo form_dropdown('team_name', $countries, set_value('team_name', $team->name),"class='form-control'"); ?>
+                
+                <!-- <input type="text" name="team_name" value="<?php echo set_value('team_name', $team->name); ?>" class="form-control"> -->
                 <span id="helpBlock" class="help-block"><?php echo form_error('team_name');?></span>
               </div>
             </div>
-            <?php if(form_error('team_shortname')) { ?>
-            <div class="form-group has-error">
-            <?php } else { ?>
-            <div class="form-group">
-            <?php  } ?>
-              <label for="team_shortname" class='col-sm-4 control-label'><?php echo lang('team_shortname'); ?></label>
-              <div class='col-sm-8'>
-                <input type="text" name="team_shortname" value="<?php echo set_value('team_shortname', $team->shortname); ?>" class="form-control">
-                <span id="helpBlock" class="help-block"><?php echo form_error('team_shortname');?></span>
-              </div>
-            </div>            
+        
             <?php if(form_error('team_identifier')) { ?>
             <div class="form-group has-error">
             <?php } else { ?>
@@ -45,17 +37,6 @@
               <div class="col-sm-8">
                 <input type="text" name="team_identifier" value="<?php echo set_value('team_identifier', $team->identifier); ?>" class="form-control">
                 <span id="helpBlock" class="help-block"><?php echo form_error('team_identifier');?></span>
-              </div>
-            </div>
-            <?php if(form_error('team_flag')) { ?>
-            <div class="form-group has-error">
-            <?php } else { ?>
-            <div class="form-group">
-            <?php  } ?>
-              <label for="team_flag" class='col-sm-4 control-label'><?php echo lang('team_flag'); ?></label>
-              <div class="col-sm-8">
-                <input type="text" name="team_flag" value="<?php echo set_value('team_flag', $team->flag); ?>" class="form-control">
-                <span id="helpBlock" class="help-block"><?php echo form_error('team_flag');?></span>
               </div>
             </div>
               <div class="col-sm-4">

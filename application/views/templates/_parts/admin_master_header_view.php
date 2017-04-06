@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.css"/>
     <link href="<?php echo site_url('assets/admin/css/styles.css'); ?>" rel="stylesheet">
     <link href="<?php echo site_url('assets/admin/css/animate.css'); ?>" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="<?php echo site_url('assets/admin/css/bootstrap-datepicker3.css'); ?>" rel="stylesheet">
+    <link href="<?php echo site_url('assets/admin/css/jquery.timepicker.css'); ?>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Roboto" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
