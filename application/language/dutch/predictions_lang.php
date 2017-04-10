@@ -15,8 +15,7 @@
 $lang['matches_no_access'] = 'Geen toegang.';
 $lang['all_users'] = 'All users';
 $lang['create_match'] = 'Nieuwe wedstrijd Aanmaken';
-$lang['edit_match'] = 'Bewerken';
-$lang['delete_match'] = 'Verwijderen';
+$lang['edit_match'] = 'Wedstrijd %s bewerken';
 $lang['error_saving_match'] = 'Er is een fout opgetreden, gegevens zijn niet opgeslagen';
 $lang['match_saved'] = 'Wedstrijd %s opgeslagen';
 $lang['match_created'] = 'Wedstrijd %s opgeslagen';
@@ -38,20 +37,9 @@ $lang['matchtype_not_valid'] = 'Vul een wedstrijdtype in bij {field}';
 $lang['edit_match_result'] = 'Uitslag Invullen';
 $lang['result_home_goals'] = 'Doelpunten %s';
 $lang['result_away_goals'] = 'Doelpunten %s';
-$lang['show_predictions'] = 'Voorspellingen tonen';
+
 $lang['result'] = 'Uitslag';
 $lang['ID'] = 'ID';
 $lang['operations'] = 'Acties';
 $lang['cancel'] = 'Afbreken';
 $lang['save'] = 'Opslaan';
-
-$lang['username'] = 'Gebruiker' ;
-$lang['prediction'] = 'Voorspelling' ;
-$lang['pred_result'] = 'Toto' ;
-$lang['points_for_home_goals'] = 'Punten goals thuis' ;
-$lang['points_for_away_goals'] = 'Punten goals uit' ;
-$lang['points_for_result'] = 'Punten toto' ;
-$lang['points_for_bonus'] = 'Bonus' ;
-$lang['points_total_for_this_match'] = 'Totaal deze wedstrijd' ;
-$lang['points_total_after_this_match'] = 'Totaal punten' ;
-$lang['match_saved_calculated'] = 'Uitslag opgeslagen, %s voorspellingen zijn automatisch doorgerekend.';

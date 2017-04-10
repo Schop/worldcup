@@ -597,6 +597,11 @@ thead {
   font-weight: bold;
 }
 
+.totalizer {
+  border-top: 1px solid;
+  padding-top: 3px;
+}
+
 /* Custom Buttons */
 
 .btn-outline {

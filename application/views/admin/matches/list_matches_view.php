@@ -26,7 +26,7 @@
                     <td><?php echo lang ('match_info');?></td>
                     <td></td>
                     <td></td>
-                    <td><?php echo lang('result'); ?></td>
+                    <td align='center'><?php echo lang('result'); ?></td>
                     <td><?php echo lang ('operations');?></td>
                   </tr>
                 </thead>
@@ -54,11 +54,22 @@
                       <?php echo $match->awayteam->name;?><br/>
                       <?php echo '('.$match->awayteam->identifier.')'; ?>
                     </td>
-                    <td align='center' style="font-size:48px; vertical-align: middle;">
-                    <?php echo $match->result_home_goals;?>-<?php echo $match->result_away_goals;?>
+                    <?php if ($match->result_home_goals!="" && $match->result_away_goals!="") { ?>
+                    <td align='center' style="vertical-align: middle;">
+                    <span style="font-size:48px;"><?php echo $match->result_home_goals." - ".$match->result_away_goals;?></span><br/>
+                     <?php echo anchor('admin/matches/edit_match_result/'.$match->id, lang('edit_match_result'),'data-toggle="tooltip" data-placement="auto top" title="'.lang('edit_match_result').'"'); ?>
                     </td>
-                    <td><?php echo anchor('admin/matches/edit/'.$match->id,'<span class="glyphicon glyphicon-pencil"></span>','data-toggle="tooltip" data-placement="auto top" title="'.sprintf(lang('edit_match'),$match->match_number).'"');
-                        echo ' '.anchor('admin/matches/delete/'.$match->id,'<span class="glyphicon glyphicon-remove"></span>', 'data-toggle="tooltip" data-placement="auto top" title="'.lang('delete_match').'"');?>
+                    <?php } else { ?>
+                    <td align='center' style="vertical-align: middle;">
+                    <?php echo anchor('admin/matches/edit_match_result/'.$match->id, lang('edit_match_result'),'data-toggle="tooltip" data-placement="auto top" title="'.lang('edit_match_result').'"'); ?>
+                    </td>
+                    <?php } ?>
+                    <td style="vertical-align: middle;">
+                      <?php echo anchor('admin/matches/edit/'.$match->id,lang('edit_match'),'data-toggle="tooltip" data-placement="auto top" title="'.lang('edit_match').'"');?>
+                      <br/>
+                      <?php echo anchor('admin/matches/show_predictions/'.$match->id, lang('show_predictions'),'data-toggle="tooltip" data-placement="auto top" title="'.lang('show_predictions').'"'); ?>                        
+                      <br/>
+                        <?php echo ' '.anchor('admin/matches/delete/'.$match->id,lang('delete_match'), 'class="text-danger" data-toggle="tooltip" data-placement="auto top" title="'.lang('delete_match').'"');?>
                     </td>
                   </tr>
               <?php  } ?>    

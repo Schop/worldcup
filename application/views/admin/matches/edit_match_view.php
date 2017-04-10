@@ -58,7 +58,7 @@
             </div>                          
             <div class="col-sm-offset-4 col-sm-8">
               <button type="submit" name="submit" value="<?php echo lang('save'); ?>" class="btn btn-success btn-outline"><span class="glyphicon glyphicon-save"></span> <?php echo lang('save'); ?></button>
-              <a href="<?php echo site_url('admin/teams'); ?>" class="btn btn-danger btn-outline pull-right"><span class="glyphicon glyphicon-remove"></span> <?php echo lang('cancel'); ?></a>
+              <a href="<?php echo site_url('admin/matches'); ?>" class="btn btn-danger btn-outline pull-right"><span class="glyphicon glyphicon-remove"></span> <?php echo lang('cancel'); ?></a>
             </div>
             <?php echo form_hidden('match_id', $match->id); ?>
           <?php echo form_close();?>      

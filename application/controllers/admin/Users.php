@@ -163,4 +163,20 @@ class Users extends Admin_Controller
     redirect('admin/users','refresh');
   }
 
+  public function show_predictions($user_id = NULL)
+  {
+    if(is_null($user_id)) {
+      $this->session->set_flashdata('errormessage','There\'s no user to show');
+      redirect('admin/users','refresh');
+    }
+
+    $this->load->model('prediction_model','prediction');
+    $predictions = $this->prediction->get_many_by('user_id', $user_id);
+    echo "<pre>";
+    print_r($predictions);
+    echo "</pre>";
+
+  }
+
+
 }

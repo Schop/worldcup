@@ -45,7 +45,8 @@
             ?>    
                 <tr>
                   <td><?php echo $user->id;?></td>
-                  <td><?php echo $user->username;?></td>
+                  <td><?php echo anchor('admin/users/show_predictions/'.$user->id, $user->username, 'data-toggle="tooltip" data-placement="auto top" title="See predictions"') ;?>
+                  </td>
                   <td><?php echo $user->first_name.' '.$user->last_name;?></td>
                   <td><?php echo $user->email;?></td>
                   <td><?php if ($user->last_login !=NULL) { echo date('Y-m-d H:i:s', $user->last_login); } ?></td>

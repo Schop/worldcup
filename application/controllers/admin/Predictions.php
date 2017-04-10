@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Matches extends Admin_Controller
+class Predictions extends Admin_Controller
 {
 
   function __construct()
@@ -10,34 +10,48 @@ class Matches extends Admin_Controller
 
     $site_lang = $this->session->userdata('site_lang');
     if ($site_lang) {
-        $this->lang->load(array('matches','general','ion_auth'), $this->session->userdata('site_lang'));
+        $this->lang->load(array('predictions','matches','general','ion_auth'), $this->session->userdata('site_lang'));
     } else {
-        $this->lang->load(array('matches','general','ion_auth'), $this->config->item('pool_default_language'));
+        $this->lang->load(array('predictions','matches','general','ion_auth'), $this->config->item('pool_default_language'));
     }
 
     if(!$this->ion_auth->in_group('admin'))
     {
-      $this->session->set_flashdata('errormessage',lang('matches_no_access'));
+      $this->session->set_flashdata('errormessage',lang('predictions_no_access'));
       redirect('admin','refresh');
     }
 
-    $this->load->model('match_model', 'match');
+    $this->load->model('prediction_model', 'prediction');
     $this->load->helper('date');
   }
 
   public function index()
   {
-    $this->data['page_title'] = lang('matches');
-    $this->data['matches'] = $this->match->with('venue')
-                                         ->with('hometeam')
-                                         ->with('awayteam')
-                                         ->with('matchtype')
-                                         ->order_by('hometeam_id')
-                                         ->get_all();                                        
+    $this->data['page_title'] = lang('predictions');
+    $this->data['predictions'] = $this->prediction->with('match')
+                                                  ->with('user')
+                                                  ->get_all();                                        
                                         
-    //echo "<pre>"; print_r($this->data['matches']); echo "</pre>";
+    echo "<pre>"; print_r($this->data['predictions']); echo "</pre>";
 
-    $this->render('admin/matches/list_matches_view');
+    //$this->render('admin/matches/list_matches_view');
+  }
+
+  public function by_user($user_id = NULL) {
+    if(is_null($user_id))
+    {
+      $this->session->set_flashdata('infomessage','There\'s no user');
+      redirect('admin','refresh'); 
+    }
+
+    $this->data['page_title'] = lang('predictions');
+    $this->data['predictions'] = $this->prediction->with('match')
+                                                  ->with('user')
+                                                  ->get_many_by('user_id', $user_id);                                        
+                                        
+    echo "<pre>"; print_r($this->data['predictions']); echo "</pre>";
+
+
   }
 
   public function by_matchtype($matchtype_id) {
@@ -321,66 +335,31 @@ class Matches extends Admin_Controller
       } else {
         $update_array['result_home_goals'] = NULL;
       }      
-      if(!is_null($update_array['result_home_goals']) && !is_null($update_array['result_away_goals'])) {
-        if($update_array['result_home_goals'] > $update_array['result_away_goals']) {
-          $update_array['result'] = 1;
-        } elseif ($update_array['result_home_goals'] < $update_array['result_away_goals']) {
-          $update_array['result'] = 2;
-        } else {
-          $update_array['result'] = 3;
-        }
-      } else {
-        $update_array['result'] = NULL;
-      }  
 
+      $result_away_goals = $this->input->post('result_away_goals');
       $match = $this->match->with('hometeam')
                            ->with('awayteam')
                            ->get($match_id);
       $update = $this->match->update($match_id, $update_array);
-      
-      // now calculate the whole match automatically
-      $this->load->model('prediction_model','prediction');
-      $calcs = $this->prediction->calculate($match_id);
 
       if ($update == TRUE) {
-        $this->session->set_flashdata('successmessage', sprintf(lang('match_saved_calculated'), $calcs));
+        $this->session->set_flashdata('successmessage', sprintf(lang('match_saved'), $match->match_number));
       } else {
         $this->session->set_flashdata('errormessage', lang('error_saving_match'));
       }
       //echo "<pre>";print_r($this->input->post()); echo "</pre>";
-      redirect('admin/matches/show_predictions/'.$match_id,'refresh');
+      redirect('admin/matches','refresh');
     }    
   }
 
-
-
-  public function show_predictions($match_id = NULL)
+  public function generate_predictions($match_id = NULL)
   {
-    if(is_null($match_id)) {
-      $this->session->set_flashdata('infomessage','No');
-      redirect('admin/matches','refresh');
-    }
-    $this->load->model('user_model','user');
-    $objusers = $this->user->get_all();
-    foreach ($objusers as $user) {
-      $users[$user->id] = $user;
-    }
-    $this->load->model('hometeam_model','team');
-    $objteams = $this->team->get_all();
-    foreach ($objteams as $team) {
-      $teams[$team->id] = $team;
-    }
-    $this->data['teams'] = $teams;
-    $this->data['users'] = $users;
-    $this->data['match'] = $this->match->with('predictions')
-                                       ->with('hometeam')
-                                       ->with('awayteam')
-                                       ->get($match_id);
-    $this->data['page_title']  = $this->data['match']->hometeam->name." - ".$this->data['match']->awayteam->name.": ".$this->data['match']->result_home_goals." - ".$this->data['match']->result_away_goals;
-    //echo "<pre>"; print_r($this->data['match']); echo "</pre>";
-    $this->render('admin/matches/match_predictions_view');  
+    $this->load->model('prediction_model', 'prediction');
+
+        $this->prediction->generate_predictions($match_id);
 
   }
+
 
   public function delete($match_id = NULL)
   {
