@@ -16,7 +16,8 @@
               <table class="table table-striped table-hover dataTable" cellspacing="0" width="100%">
                 <thead>
                   <tr>
-                    <td><?php echo lang('username'); ?></td>
+                    <td></td>
+                    <td><?php echo lang('match'); ?> </td>
                     <td><?php echo lang('prediction'); ?></td>
                     <td><?php echo lang('points');?></td>
                     <td><?php echo lang('points_total_for_this_match');?></td>
@@ -24,10 +25,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($match->predictions as $prediction) { ?>
+                <?php foreach ($predictions as $prediction) { ?>
                   <tr>
-                    <td><?php echo anchor('admin/users/show_predictions/'.$prediction->user_id, $users[$prediction->user_id]->username,  'data-toggle="tooltip" data-placement="auto top" title="See predictions"') ;?>
-                    </td>
+                    <td><?php echo $prediction->match_id;?></td>
+                    <td><?php echo $teams[$prediction->match->hometeam_id]->name." - ".$teams[$prediction->match->awayteam_id]->name; ?></td>
                     <td align='center'><?php echo $prediction->pred_home_goals." - ".$prediction->pred_away_goals;?></td>
                     <td align='right'>
                       <?php echo lang('points_for_home_goals');?>: <?php echo ($prediction->points_for_home_goals!="") ? $prediction->points_for_home_goals : "&mdash;"; ?><br/>

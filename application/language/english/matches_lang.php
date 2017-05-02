@@ -56,3 +56,4 @@ $lang['points_for_bonus'] = 'Bonus' ;
 $lang['points_total_for_this_match'] = 'Total this match' ;
 $lang['points_total_after_this_match'] = 'Totaal punten' ;
 $lang['match_saved_calculated'] = 'Result was saved, %s predictions have been automatically calculated.';
+$lang['total_after_match'] = 'Points Total after this match';

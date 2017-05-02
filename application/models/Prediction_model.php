@@ -66,7 +66,7 @@ class Prediction_model extends MY_Model
           
           $bonus = true;
           $total = 0;
-          $user_total = $this->get_total_user($prediction->user_id, $match_id);
+          $user_total = $this->get_total_user_before_match($prediction->user_id, $match_id);
 
           if($match->result_home_goals == $prediction->pred_home_goals) {
             $update[$count]['points_for_home_goals'] = $points_for_goals;
@@ -109,12 +109,19 @@ class Prediction_model extends MY_Model
         return $count;                                        
 	}
 
-  function get_total_user($user_id, $match_id) {
+  function get_total_user_before_match($user_id, $match_id) {
     $this->db->select_max('points_after_this_match');
     $this->db->where('user_id', $user_id);
     $this->db->where('match_id <', $match_id);
     $query =  $this->db->get('predictions')->row();
     return $query->points_after_this_match;
   }
+
+  function get_total_user($user_id) {
+    $this->db->select_sum('points_total_for_this_match');
+    $this->db->where('user_id', $user_id);
+    $query =  $this->db->get('predictions')->row();
+    return $query->points_total_for_this_match;
+  }  
 
 }

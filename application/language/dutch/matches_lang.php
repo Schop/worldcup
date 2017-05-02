@@ -55,3 +55,4 @@ $lang['points_for_bonus'] = 'Bonus' ;
 $lang['points_total_for_this_match'] = 'Totaal deze wedstrijd' ;
 $lang['points_total_after_this_match'] = 'Totaal punten' ;
 $lang['match_saved_calculated'] = 'Uitslag opgeslagen, %s voorspellingen zijn automatisch doorgerekend.';
+$lang['total_after_match'] = 'Punten Totaal na wedstrijd';

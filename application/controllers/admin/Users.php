@@ -171,12 +171,26 @@ class Users extends Admin_Controller
     }
 
     $this->load->model('prediction_model','prediction');
-    $predictions = $this->prediction->get_many_by('user_id', $user_id);
-    echo "<pre>";
-    print_r($predictions);
-    echo "</pre>";
+    $this->load->model('match_model','match');
+    $this->load->model('user_model', 'user');
+    $this->load->model('hometeam_model', 'team');
 
-  }
+    $this->data['user'] = $this->user->get($user_id);
+    $this->data['predictions'] = $this->prediction->with('match')->order_by('match_id')->get_many_by('user_id', $user_id);
+    
+    $team_result = $this->team->get_all();
+    foreach ($team_result as $team) {
+      $teams[$team->id] = $team;
+    }
 
+    $match_results = $this->match->get_all();
+    foreach ($match_results as $match) {
+      $matches[$match->id] = $match;
+    }
 
+    $this->data['matches'] = $matches;
+    $this->data['teams'] = $teams;
+  $this->data['page_title'] = 'Show predictions for user '.$this->data['user']->username;
+  $this->render('admin/users/user_predictions_view');
+ }
 }
